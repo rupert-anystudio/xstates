@@ -61,17 +61,10 @@ const Examples = ({ label, examples, machine, machineConfig = {}, onResetClick }
   return (
     <>
       <FullRow>
-        {done && (
-          <Button onClick={onResetClick}>{'RESTART'}</Button>
-        )}
+        <Button onClick={onResetClick} disabled={!state?.done}>{'RESTART'}</Button>
         {(state?.nextEvents ?? []).map(nextEvent => (
           <Button key={nextEvent} onClick={() => { send(nextEvent) }}>{nextEvent}</Button>
         ))}
-      </FullRow>
-      <FullRow>
-        {currentStateId && (
-          <Tag>{currentStateId}</Tag>
-        )}
       </FullRow>
       <FullRow>
         {stateIds.filter(v => v.isActive).map(({values, value}) => (
@@ -83,6 +76,8 @@ const Examples = ({ label, examples, machine, machineConfig = {}, onResetClick }
             ))}
           </React.Fragment>
         ))}
+      </FullRow>
+      <FullRow>
         {/* {stateIds.map(({value, values, isActive}) => (
           <Tag key={value} isActive={isActive}>
             {values.map(v => (

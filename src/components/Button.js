@@ -19,6 +19,11 @@ const Button = styled.div`
   border: 2px solid transparent;
   /* font-weight: 600;
   letter-spacing: 0.01em; */
+  &[disabled] {
+    pointer-events: none;
+    cursor: default;
+    opacity: 0.3;
+  }
 `
 
 export default Button
